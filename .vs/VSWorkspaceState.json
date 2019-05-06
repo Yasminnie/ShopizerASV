@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.mvn",
+    "\\.mvn\\wrapper",
+    "\\sm-core",
+    "\\sm-core-model",
+    "\\sm-core-modules",
+    "\\sm-shop",
+    "\\sm-shop\\.mvn",
+    "\\sm-shop\\.mvn\\wrapper"
+  ],
+  "SelectedNode": "\\sm-shop\\.mvn",
+  "PreviewInSolutionExplorer": false
+}
