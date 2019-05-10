@@ -56,9 +56,8 @@ pipeline {
                 }
             }
         }
-    }
 
-	stage("Verify") {
+		stage("Verify") {
             agent {
                 docker {
                     //docker image with maven and jdk 12 installed to complete these stages
@@ -83,4 +82,5 @@ pipeline {
                 }
             }
         }
+    }
 }
