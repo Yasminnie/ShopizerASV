@@ -75,7 +75,7 @@ pipeline {
                     withSonarQubeEnv("sonarqube") {
                         sh "mvn sonar:sonar"
                     }
-                    sleep(10) // Another hack because of webhook issues
+                    sleep(60) // Another hack because of webhook issues
                     timeout(time: 30, unit: "MINUTES") {
                         waitForQualityGate abortPipeline: true
                     }
