@@ -5,12 +5,21 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.salesmanager.core.business.exception.ServiceException;
+import com.salesmanager.core.business.services.merchant.MerchantStoreService;
+import com.salesmanager.core.business.services.reference.language.LanguageService;
+import com.salesmanager.core.model.catalog.product.availability.ProductAvailability;
+import com.salesmanager.core.model.merchant.MerchantStore;
+import com.salesmanager.core.model.reference.language.Language;
+import com.salesmanager.shop.model.catalog.product.*;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
@@ -26,12 +35,6 @@ import com.salesmanager.shop.model.catalog.category.Category;
 import com.salesmanager.shop.model.catalog.category.CategoryDescription;
 import com.salesmanager.shop.model.catalog.category.PersistableCategory;
 import com.salesmanager.shop.model.catalog.manufacturer.Manufacturer;
-import com.salesmanager.shop.model.catalog.product.PersistableProduct;
-import com.salesmanager.shop.model.catalog.product.PersistableProductPrice;
-import com.salesmanager.shop.model.catalog.product.PersistableProductReview;
-import com.salesmanager.shop.model.catalog.product.ProductDescription;
-import com.salesmanager.shop.model.catalog.product.ReadableProduct;
-import com.salesmanager.shop.model.catalog.product.RentalOwner;
 import com.salesmanager.shop.model.catalog.product.attribute.PersistableProductOption;
 import com.salesmanager.shop.model.catalog.product.attribute.PersistableProductOptionValue;
 import com.salesmanager.shop.model.catalog.product.attribute.ProductOptionDescription;
@@ -45,6 +48,7 @@ public class ProductManagementAPIIntegrationTest extends ServicesTestSupport {
     private Long testCategoryID;
 
     private Long testProductID;
+    private LanguageService languageService;
 
 
     @Test
@@ -392,7 +396,9 @@ public class ProductManagementAPIIntegrationTest extends ServicesTestSupport {
         System.out.println("Product " + testProductID + " Deleted.");
     }
 
-    /** private helper methods **/
+    /**
+     * private helper methods
+     **/
     public byte[] extractBytes(final File imgPath) throws Exception {
 
         final FileInputStream fis = new FileInputStream(imgPath);
@@ -404,6 +410,28 @@ public class ProductManagementAPIIntegrationTest extends ServicesTestSupport {
 
         return fileBytes;
 
+    }
+
+    public void addProductWithoutCategory() throws ServiceException {
+        PersistableProduct product = new PersistableProduct();
+
+        product.setProductHeight(new BigDecimal(4));
+        product.setProductLength(new BigDecimal(3));
+        product.setProductWidth(new BigDecimal(1));
+        product.setSku("YASMIN TEST");
+        product.setManufacturer(createManufacturer());
+        product.setCategories(null);
+        product.setPrice(new BigDecimal(39.99));
+
+        // Product description
+        ProductDescription desc = new ProductDescription();
+        desc.setName("Yasmin's favourite bag");
+        desc.setLanguage("en");
+        product.getDescriptions().add(desc);
+
+        final HttpEntity<PersistableProduct> entity = new HttpEntity<>(product, getHeader());
+        final ResponseEntity<PersistableProduct> response = testRestTemplate.postForEntity("/api/v1/private/products?store=" + Constants.DEFAULT_STORE, entity, PersistableProduct.class);
+        assertThat(response.getStatusCode(), is(CREATED));
     }
 
 }

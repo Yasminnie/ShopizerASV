@@ -1,15 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.mvn",
-    "\\.mvn\\wrapper",
     "\\sm-core",
-    "\\sm-core-model",
-    "\\sm-core-modules",
-    "\\sm-shop",
-    "\\sm-shop\\.mvn",
-    "\\sm-shop\\.mvn\\wrapper"
+    "\\sm-core\\src",
+    "\\sm-core\\src\\main",
+    "\\sm-core\\src\\main\\java",
+    "\\sm-core\\src\\main\\java\\com",
+    "\\sm-core\\src\\main\\java\\com\\salesmanager",
+    "\\sm-core\\src\\main\\java\\com\\salesmanager\\core",
+    "\\sm-core\\src\\main\\java\\com\\salesmanager\\core\\business"
   ],
-  "SelectedNode": "\\sm-shop\\.mvn",
   "PreviewInSolutionExplorer": false
 }
