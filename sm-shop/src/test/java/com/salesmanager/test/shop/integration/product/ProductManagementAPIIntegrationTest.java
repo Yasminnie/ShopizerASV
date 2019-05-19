@@ -423,7 +423,6 @@ public class ProductManagementAPIIntegrationTest extends ServicesTestSupport {
         product.setCategories(null);
         product.setPrice(new BigDecimal(39.99));
 
-        // Product description
         ProductDescription desc = new ProductDescription();
         desc.setName("Yasmin's favourite bag");
         desc.setLanguage("en");
