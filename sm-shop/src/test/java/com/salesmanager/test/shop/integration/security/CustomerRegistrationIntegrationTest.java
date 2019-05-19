@@ -41,7 +41,43 @@ public class CustomerRegistrationIntegrationTest extends ServicesTestSupport {
                 AuthenticationResponse.class);
         assertThat(response.getStatusCode(), is(OK));
         assertNotNull(loginResponse.getBody().getToken());
-
     }
 
+	@Test
+	public void avoidDoubleRegistrations() {
+		final PersistableCustomer testCustomer = new PersistableCustomer();
+        testCustomer.setEmailAddress("customer1@test.com");
+        testCustomer.setUserName("testCust1");
+        testCustomer.setClearPassword("clear123");
+        testCustomer.setGender(CustomerGender.M.name());
+        testCustomer.setLanguage("en");
+        final Address billing = new Address();
+        billing.setFirstName("customer1");
+        billing.setLastName("ccstomer1");
+        billing.setCountry("BE");
+        testCustomer.setBilling(billing);
+        testCustomer.setStoreCode(Constants.DEFAULT_STORE);
+        final HttpEntity<PersistableCustomer> entity = new HttpEntity<>(testCustomer, getHeader());
+		final ResponseEntity<PersistableCustomer> response = testRestTemplate.postForEntity("/api/v1/customer/register", entity, PersistableCustomer.class);
+        assertThat(response.getStatusCode(), is(OK));
+        assertThat(response.getStatusCode(), not(OK));
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void avoidInvalidEmail() {
+		final PersistableCustomer testCustomer = new PersistableCustomer();
+        testCustomer.setEmailAddress("lalala");
+		testCustomer.setUserName("testCust1");
+        testCustomer.setClearPassword("clear123");
+        testCustomer.setGender(CustomerGender.M.name());
+        testCustomer.setLanguage("en");
+        final Address billing = new Address();
+        billing.setFirstName("customer1");
+        billing.setLastName("ccstomer1");
+        billing.setCountry("BE");
+        testCustomer.setBilling(billing);
+        testCustomer.setStoreCode(Constants.DEFAULT_STORE);
+        final HttpEntity<PersistableCustomer> entity = new HttpEntity<>(testCustomer, getHeader());
+	    final ResponseEntity<PersistableCustomer> response = testRestTemplate.postForEntity("/api/v1/customer/register", entity, PersistableCustomer.class);
+	}
 }
