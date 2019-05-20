@@ -33,7 +33,6 @@ public class SearchProductAPITest {
 		return headers;
 	}
 	
-	
 	//@Test
 	@Ignore
 	public void testSearch() throws Exception {
