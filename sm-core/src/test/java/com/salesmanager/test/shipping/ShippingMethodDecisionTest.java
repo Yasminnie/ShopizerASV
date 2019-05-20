@@ -47,17 +47,11 @@ public class ShippingMethodDecisionTest extends com.salesmanager.test.common.Abs
 		country.setIsoCode("CA");
 		country.setName("Canada");
 		
-		//country.setIsoCode("US");
-		//country.setName("United States");
-		
 		delivery.setCountry(country);
 		
 		Zone zone = new Zone();
 		zone.setCode("QC");
 		zone.setName("Quebec");
-		
-		//zone.setCode("NY");
-		//zone.setName("New York");
 		
 		delivery.setZone(zone);
 		

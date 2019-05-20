@@ -63,7 +63,6 @@ public class CustomerRegistrationIntegrationTest extends ServicesTestSupport {
 		final ResponseEntity<PersistableCustomer> response = testRestTemplate.postForEntity("/api/v1/customer/register", sisterentity, PersistableCustomer.class);
         assertThat(response.getStatusCode(), is(OK));
 
-
         final PersistableCustomer brother = new PersistableCustomer();
         brother.setEmailAddress("brotherandsister@test.com");
         brother.setUserName("sanne");

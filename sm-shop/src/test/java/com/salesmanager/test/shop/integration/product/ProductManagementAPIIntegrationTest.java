@@ -16,10 +16,12 @@ import java.util.List;
 import com.salesmanager.core.business.exception.ServiceException;
 import com.salesmanager.core.business.services.merchant.MerchantStoreService;
 import com.salesmanager.core.business.services.reference.language.LanguageService;
+import com.salesmanager.core.business.utils.ajax.AjaxResponse;
 import com.salesmanager.core.model.catalog.product.availability.ProductAvailability;
 import com.salesmanager.core.model.merchant.MerchantStore;
 import com.salesmanager.core.model.reference.language.Language;
 import com.salesmanager.shop.model.catalog.product.*;
+import com.salesmanager.shop.model.shop.ContactForm;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
@@ -412,25 +414,70 @@ public class ProductManagementAPIIntegrationTest extends ServicesTestSupport {
 
     }
 
+
+    /**
+     * Contact us email
+     * @throws Exception
+     */
+    @Test
+    @Ignore
+    public void contactUs() throws Exception {
+        restTemplate = new RestTemplate();
+
+        ContactForm contact = new ContactForm();
+        contact.setComment("A few good words for you!");
+        contact.setEmail(null);
+        contact.setName("Johny Depp");
+        contact.setSubject("Hello ny friend");
+
+        ObjectWriter writer = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = writer.writeValueAsString(contact);
+
+        System.out.println(json);
+
+        HttpEntity<String> httpEntity = new HttpEntity<String>(json, getHeader());
+
+        ResponseEntity<AjaxResponse> response = restTemplate.exchange("http://localhost:8080/sm-shop/services/public/DEFAULT/contact", HttpMethod.POST, httpEntity, AjaxResponse.class);
+
+        if(response.getStatusCode() != HttpStatus.OK){
+            throw new Exception();
+        }else{
+            System.out.println(response.getBody() + " Success sending contact");
+        }
+    }
+
+
+    @Test(timeout=3000)
     public void addProductWithoutCategory() throws ServiceException {
-        PersistableProduct product = new PersistableProduct();
+//        PersistableProduct product = new PersistableProduct();
+//
+//        product.setProductHeight(new BigDecimal(4));
+//        product.setProductLength(new BigDecimal(3));
+//        product.setProductWidth(new BigDecimal(1));
+//        product.setSku("YASMIN TEST");
+//        product.setManufacturer(createManufacturer());
+//        product.setCategories(null);
+//        product.setPrice(new BigDecimal(39.99));
+//
+//        ProductDescription desc = new ProductDescription();
+//        desc.setName("Yasmin's favourite bag");
+//        desc.setLanguage("en");
+//        product.getDescriptions().add(desc);
+//
+//        final HttpEntity<PersistableProduct> entity = new HttpEntity<>(product, getHeader());
+//        final ResponseEntity<PersistableProduct> response = testRestTemplate.postForEntity("/api/v1/private/products?store=" + Constants.DEFAULT_STORE, entity, PersistableProduct.class);
+//        assertThat(response.getStatusCode(), is(CREATED));
 
-        product.setProductHeight(new BigDecimal(4));
-        product.setProductLength(new BigDecimal(3));
-        product.setProductWidth(new BigDecimal(1));
-        product.setSku("YASMIN TEST");
-        product.setManufacturer(createManufacturer());
-        product.setCategories(null);
-        product.setPrice(new BigDecimal(39.99));
+//        final PersistableProduct product = new PersistableProduct();
+//        product.setCategories(null);
+//        product.setManufacturer(createManufacturer());
+//        product.setPrice(BigDecimal.TEN);
+//        product.setSku("123");
+//        final HttpEntity<PersistableProduct> entity = new HttpEntity<>(product, getHeader());
+//
+//        final ResponseEntity<PersistableProduct> response = testRestTemplate.postForEntity("/api/v1/private/products?store=" + Constants.DEFAULT_STORE, entity, PersistableProduct.class);
+//        assertThat(response.getStatusCode(), is(CREATED));
 
-        ProductDescription desc = new ProductDescription();
-        desc.setName("Yasmin's favourite bag");
-        desc.setLanguage("en");
-        product.getDescriptions().add(desc);
-
-        final HttpEntity<PersistableProduct> entity = new HttpEntity<>(product, getHeader());
-        final ResponseEntity<PersistableProduct> response = testRestTemplate.postForEntity("/api/v1/private/products?store=" + Constants.DEFAULT_STORE, entity, PersistableProduct.class);
-        assertThat(response.getStatusCode(), is(CREATED));
     }
 
 }

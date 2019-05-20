@@ -38,7 +38,4 @@ public class UserApiIntegrationTest extends ServicesTestSupport {
           assertNotNull(user);
       }
   }
-  
-
-
 }
