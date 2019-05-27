@@ -47,7 +47,7 @@ pipeline {
                             * Compile the software, run the tests and code coverage *
                             *********************************************************/
                             // Ignoring failed tests, because sonar will generate a view of the tests
-                            sh "mvn clean install"
+                            sh "mvn clean install -e"
 
                             // Stash the repo including files needed for the sonarqube Analysis
                             stash name: 'All', includes: '**'
