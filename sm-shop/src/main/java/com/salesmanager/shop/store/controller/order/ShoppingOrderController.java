@@ -511,7 +511,7 @@ public class ShoppingOrderController extends AbstractController {
         }
 
         Transaction initialTransaction = (Transaction) super.getSessionAttribute(Constants.INIT_TRANSACTION_KEY, request);
-        Order modelOrder = (initialTransaction != null) ? orderFacade.processOrder(order, modelCustomer, initialTransaction, store, language) :  orderFacade.processOrder(order, modelCustomer, store, language);
+        Order modelOrder = (initialTransaction != null) ? orderFacade.processOrder(order, modelCustomer, initialTransaction, store, language) : orderFacade.processOrder(order, modelCustomer, store, language);
         //save order id in session
         super.setSessionAttribute(Constants.ORDER_ID, modelOrder.getId(), request);
         //set a unique token for confirmation
@@ -556,7 +556,7 @@ public class ShoppingOrderController extends AbstractController {
                     super.setSessionAttribute(Constants.CUSTOMER, modelCustomer, request);
                 }
                 //send new user registration template
-                if (order.getCustomer().getId() == null || order.getCustomer().getId().longValue() == 0) {
+                if (order.getCustomer().getId() == null || order.getCustomer().getId() == 0) {
                     //send email for new customer
                     customer.setClearPassword(password);//set clear password for email
                     customer.setUserName(userName);
@@ -588,7 +588,8 @@ public class ShoppingOrderController extends AbstractController {
 
     @SuppressWarnings("unchecked")
     @RequestMapping("/commitOrder.html")
-    public String commitOrder(@CookieValue("cart") String cookie, @Valid @ModelAttribute(value = "order") ShopOrder order, BindingResult bindingResult, Model model, HttpServletRequest request, HttpServletResponse response, Locale locale) throws Exception {
+    public String commitOrder(@CookieValue("cart") String cookie, @Valid @ModelAttribute(value = "order")
+            ShopOrder order, BindingResult bindingResult, Model model, HttpServletRequest request, HttpServletResponse response, Locale locale) throws Exception {
 
         MerchantStore store = (MerchantStore) request.getAttribute(Constants.MERCHANT_STORE);
         Language language = (Language) request.getAttribute(LANGUAGE_STRING);
@@ -938,7 +939,7 @@ public class ShoppingOrderController extends AbstractController {
 
                     //additional informations
 /*					if(quote.getQuoteInformations() != null && quote.getQuoteInformations().size() >0) {
-						for(String k : quote.getQuoteInformations().keySet()) {
+                        for(String k : quote.getQuoteInformations().keySet()) {
 							Object o = quote.getQuoteInformations().get(k);
 							try {
 								readableSummary.getQuoteInformations().put(k, String.valueOf(o));
@@ -1234,6 +1235,4 @@ public class ShoppingOrderController extends AbstractController {
 
         return readableOrder;
     }
-
-
 }
