@@ -419,7 +419,7 @@ public class ProductManagementAPIIntegrationTest extends ServicesTestSupport {
      * Contact us email
      * @throws Exception
      */
-    @Test
+    @Test(timeout=500)
     @Ignore
     public void contactUs() throws Exception {
         restTemplate = new RestTemplate();

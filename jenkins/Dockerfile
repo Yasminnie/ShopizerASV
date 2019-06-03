@@ -25,3 +25,5 @@ RUN wget https://download.docker.com/linux/static/stable/x86_64/docker-18.09.0.t
     mv ./docker/docker /usr/bin/docker &&\
     chmod +x /usr/bin/docker &&\
 rm -rf ./docker
+
+

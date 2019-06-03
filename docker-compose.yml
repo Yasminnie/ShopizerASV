@@ -22,12 +22,11 @@ services:
     container_name: jenkins
     restart: always
     build: jenkins
-    #image: jenkins/jenkins:lts
     ports:
     - "8103:8080"
     volumes: 
     - jenkins-data:/var/jenkins_home
-    - /var/run/docker.sock:/var/run/docker.sock # Use Docker from the host instead of running Docker in Docker
+    - /var/run/docker.sock:/var/run/docker.sock
   
   sonarqube:
     container_name: sonarqube

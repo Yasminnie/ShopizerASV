@@ -468,7 +468,6 @@ public class ShoppingOrderController extends AbstractController {
     private void setUsernameAndPassword(PersistableCustomer customer, MerchantStore store, HttpServletRequest request, Authentication auth) throws Exception {
         if (request.isUserInRole("AUTH_CUSTOMER")) {
             authCustomer = customerFacade.getCustomerByUserName(auth.getName(), store);
-            //set id and authentication information
             customer.setUserName(authCustomer.getNick());
             customer.setEncodedPassword(authCustomer.getPassword());
             customer.setId(authCustomer.getId());
@@ -476,7 +475,7 @@ public class ShoppingOrderController extends AbstractController {
         customer.setId(null);
     }
 
-    private Order commitOrder(ShopOrder order, HttpServletRequest request, Locale locale) throws Exception, ServiceException {
+    private Order commitOrder(ShopOrder order, HttpServletRequest request, Locale locale) throws Exception {
         MerchantStore store = (MerchantStore) request.getAttribute(Constants.MERCHANT_STORE);
         Language language = (Language) request.getAttribute(LANGUAGE_STRING);
 
