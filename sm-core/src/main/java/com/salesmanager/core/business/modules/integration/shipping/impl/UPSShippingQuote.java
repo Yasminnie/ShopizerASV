@@ -340,7 +340,7 @@ public class UPSShippingQuote implements ShippingQuoteModule {
 				xmldatabuffer.append("</Code>");
 				xmldatabuffer.append("</UnitOfMeasurement>");
 				xmldatabuffer.append("<Weight>");
-				xmldatabuffer.append(new BigDecimal(packageDetail.getShippingWeight())
+				xmldatabuffer.append(BigDecimal.valueOf(packageDetail.getShippingWeight())
 						.setScale(1, BigDecimal.ROUND_HALF_UP));
 				xmldatabuffer.append("</Weight>");
 				xmldatabuffer.append("</PackageWeight>");
@@ -353,15 +353,15 @@ public class UPSShippingQuote implements ShippingQuoteModule {
 				xmldatabuffer.append("</Code>");
 				xmldatabuffer.append("</UnitOfMeasurement>");
 				xmldatabuffer.append("<Length>");
-				xmldatabuffer.append(new BigDecimal(packageDetail.getShippingLength())
+				xmldatabuffer.append(BigDecimal.valueOf(packageDetail.getShippingLength())
 						.setScale(2, BigDecimal.ROUND_HALF_UP));
 				xmldatabuffer.append("</Length>");
 				xmldatabuffer.append("<Width>");
-				xmldatabuffer.append(new BigDecimal(packageDetail.getShippingWidth())
+				xmldatabuffer.append(BigDecimal.valueOf(packageDetail.getShippingWidth())
 						.setScale(2, BigDecimal.ROUND_HALF_UP));
 				xmldatabuffer.append("</Width>");
 				xmldatabuffer.append("<Height>");
-				xmldatabuffer.append(new BigDecimal(packageDetail.getShippingHeight())
+				xmldatabuffer.append(BigDecimal.valueOf(packageDetail.getShippingHeight())
 						.setScale(2, BigDecimal.ROUND_HALF_UP));
 				xmldatabuffer.append("</Height>");
 				xmldatabuffer.append("</Dimensions>");

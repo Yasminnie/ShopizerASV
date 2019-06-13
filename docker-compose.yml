@@ -51,6 +51,11 @@ services:
     - dockerregistry-certs:/certs
     - dockerregistry-auth:/auth 
 
+networks:
+  default:
+    external:
+      name: shopizer_default
+
 volumes:
   gogs-data:
     name: gogs-data

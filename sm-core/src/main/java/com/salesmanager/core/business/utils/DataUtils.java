@@ -41,7 +41,7 @@ public class DataUtils {
 						BigDecimal.ROUND_HALF_UP).doubleValue();
 			} else {// pound = kilogram
 				double answer = weight * weightConstant;
-				BigDecimal w = new BigDecimal(answer);
+				BigDecimal w = BigDecimal.valueOf(answer);
 				return w.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 			}
 		} else {// need KG
@@ -49,9 +49,8 @@ public class DataUtils {
 				return new BigDecimal(String.valueOf(weight)).setScale(2,
 						BigDecimal.ROUND_HALF_UP).doubleValue();
 			} else {
-
 				double answer = weight / weightConstant;
-				BigDecimal w = new BigDecimal(answer);
+				BigDecimal w = BigDecimal.valueOf(answer);
 				return w.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 
 			}
@@ -79,9 +78,8 @@ public class DataUtils {
 				double measureConstant = 2.54;
 
 				double answer = measure * measureConstant;
-				BigDecimal w = new BigDecimal(answer);
+				BigDecimal w = BigDecimal.valueOf(answer);
 				return w.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-
 			}
 		} else {// need CM
 			if (store.getSeizeunitcode().equals(MeasureUnit.CM.name())) {
@@ -91,12 +89,9 @@ public class DataUtils {
 				double measureConstant = 0.39;
 
 				double answer = measure * measureConstant;
-				BigDecimal w = new BigDecimal(answer);
+				BigDecimal w = BigDecimal.valueOf(answer);
 				return w.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-
 			}
 		}
-
 	}
-
 }

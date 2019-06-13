@@ -43,9 +43,6 @@
 		<jackson-version>2.9.8</jackson-version>
 		<coverage.lines>.30</coverage.lines>
 		<coverage.branches>.37</coverage.branches>
-		<sonar.host.url>localhost:8104</sonar.host.url>
-		<sonar.log.level>DEBUG</sonar.log.level>
-		<sonar.verbose>true</sonar.verbose>
 	</properties>
 
 	<dependencies>

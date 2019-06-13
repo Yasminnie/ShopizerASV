@@ -252,8 +252,8 @@ public class TaxServiceImpl
 				} //else just use nominal taxing (combine)
 				
 				double value  = (beforeTaxeAmount.doubleValue() * taxRateDouble)/100;
-				double roundedValue = new BigDecimal(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
-				taxedItemValue = new BigDecimal(roundedValue).setScale(2, RoundingMode.HALF_UP);
+				double roundedValue = BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
+				taxedItemValue = BigDecimal.valueOf(roundedValue).setScale(2, RoundingMode.HALF_UP);
 				totalTaxedItemValue = beforeTaxeAmount.add(taxedItemValue);
 				
 				TaxItem taxItem = new TaxItem();

@@ -73,7 +73,7 @@ pipeline {
                     * Run SonarQube analysis and make the build fail on failing quality gate *
                     **************************************************************************/
                     withSonarQubeEnv("sonarqube") {
-                        sh "mvn sonar:sonar"
+                        sh "mvn sonar:sonar" || true
                     }
                     sleep(60) // Another hack because of webhook issues
                     timeout(time: 30, unit: "MINUTES") {

@@ -435,7 +435,7 @@ public class InitStoreData implements InitData {
 		    
 		    ProductPrice dprice = new ProductPrice();
 		    dprice.setDefaultPrice(true);
-		    dprice.setProductPriceAmount(new BigDecimal(39.99));
+		    dprice.setProductPriceAmount(BigDecimal.valueOf(39.99));
 		    dprice.setProductAvailability(availability);
 
 		    ProductPriceDescription dpd = new ProductPriceDescription();
@@ -505,7 +505,7 @@ public class InitStoreData implements InitData {
 
 		    ProductPrice dprice2 = new ProductPrice();
 		    dprice2.setDefaultPrice(true);
-		    dprice2.setProductPriceAmount(new BigDecimal(29.99));
+		    dprice2.setProductPriceAmount(BigDecimal.valueOf(29.99));
 		    dprice2.setProductAvailability(availability2);
 
 		    dpd = new ProductPriceDescription();
@@ -562,7 +562,7 @@ public class InitStoreData implements InitData {
 
 		    ProductPrice dprice3 = new ProductPrice();
 		    dprice3.setDefaultPrice(true);
-		    dprice3.setProductPriceAmount(new BigDecimal(19.99));
+		    dprice3.setProductPriceAmount(BigDecimal.valueOf(19.99));
 		    dprice3.setProductAvailability(availability3);
 
 		    dpd = new ProductPriceDescription();
@@ -619,7 +619,7 @@ public class InitStoreData implements InitData {
 
 		    ProductPrice dprice4 = new ProductPrice();
 		    dprice4.setDefaultPrice(true);
-		    dprice4.setProductPriceAmount(new BigDecimal(18.99));
+		    dprice4.setProductPriceAmount(BigDecimal.valueOf(18.99));
 		    dprice4.setProductAvailability(availability4);
 
 		    dpd = new ProductPriceDescription();
@@ -678,7 +678,7 @@ public class InitStoreData implements InitData {
 
 		    ProductPrice dprice5 = new ProductPrice();
 		    dprice5.setDefaultPrice(true);
-		    dprice5.setProductPriceAmount(new BigDecimal(18.99));
+		    dprice5.setProductPriceAmount(BigDecimal.valueOf(18.99));
 		    dprice5.setProductAvailability(availability5);
 
 		    dpd = new ProductPriceDescription();
@@ -737,7 +737,7 @@ public class InitStoreData implements InitData {
 
 		    ProductPrice dprice6 = new ProductPrice();
 		    dprice6.setDefaultPrice(true);
-		    dprice6.setProductPriceAmount(new BigDecimal(18.99));
+		    dprice6.setProductPriceAmount(BigDecimal.valueOf(18.99));
 		    dprice6.setProductAvailability(availability6);
 
 		    dpd = new ProductPriceDescription();
@@ -865,7 +865,7 @@ public class InitStoreData implements InitData {
 			
 			order.setLocale(LocaleUtils.getLocale(store));
 
-			order.setCurrencyValue(new BigDecimal(0.98));//compared to based currency (not necessary)
+			order.setCurrencyValue(BigDecimal.valueOf(0.98));//compared to based currency (not necessary)
 			order.setCustomerId(customer.getId());
 			order.setBilling(billing);
 			order.setDelivery(delivery);
@@ -886,7 +886,7 @@ public class InitStoreData implements InitData {
 			order.setPaymentType(PaymentType.PAYPAL);
 			order.setPaymentModuleCode("paypal");
 			order.setStatus( OrderStatus.DELIVERED);
-			order.setTotal(new BigDecimal(23.99));
+			order.setTotal(BigDecimal.valueOf(23.99));
 			
 			
 			//OrderProductDownload - Digital download
@@ -898,16 +898,15 @@ public class InitStoreData implements InitData {
 			//OrderProductPrice
 			OrderProductPrice oproductprice = new OrderProductPrice();
 			oproductprice.setDefaultPrice(true);	
-			oproductprice.setProductPrice(new BigDecimal(19.99) );
+			oproductprice.setProductPrice(BigDecimal.valueOf(19.99) );
 			oproductprice.setProductPriceCode("baseprice" );
 			oproductprice.setProductPriceName("Base Price" );
 			//oproductprice.setProductPriceSpecialAmount(new BigDecimal(13.99) );	
 
-			
 			//OrderProduct
 			OrderProduct oproduct = new OrderProduct();
 			oproduct.getDownloads().add( orderProductDownload);
-			oproduct.setOneTimeCharge( new BigDecimal(19.99) );
+			oproduct.setOneTimeCharge(BigDecimal.valueOf(19.99) );
 			oproduct.setOrder(order);		
 			oproduct.setProductName( "Product name" );
 			oproduct.setProductQuantity(1);
@@ -925,7 +924,7 @@ public class InitStoreData implements InitData {
 			subtotal.setText("Summary" );
 			subtotal.setTitle("Summary" );
 			subtotal.setOrderTotalCode("subtotal");
-			subtotal.setValue(new BigDecimal(19.99 ) );
+			subtotal.setValue(BigDecimal.valueOf(19.99 ) );
 			subtotal.setOrder(order);
 			
 			order.getOrderTotal().add(subtotal);
@@ -947,7 +946,7 @@ public class InitStoreData implements InitData {
 			total.setText("Total" );
 			total.setTitle("Total" );
 			total.setOrderTotalCode("total");
-			total.setValue(new BigDecimal(23.99) );
+			total.setValue(BigDecimal.valueOf(23.99) );
 			total.setOrder(order);
 			
 			order.getOrderTotal().add(total);

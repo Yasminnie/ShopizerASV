@@ -65,15 +65,13 @@ public class CustomerReviewServiceImpl extends
 		count = count + 1;
 		double avg = totalRating.doubleValue() / count.intValue();
 		
-		customer.setCustomerReviewAvg(new BigDecimal(avg));
+		customer.setCustomerReviewAvg(BigDecimal.valueOf(avg));
 		customer.setCustomerReviewCount(count);
 		super.save(review);
 		
 		customerService.update(customer);
 		
 		review.setReviewedCustomer(customer);
-
-		
 	}
 	
 	public void update(CustomerReview review) throws ServiceException {

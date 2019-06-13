@@ -82,7 +82,7 @@ public class ProductReviewServiceImpl extends
 		//get reviews
 
 		
-		BigDecimal totalRating = averageRating.multiply(new BigDecimal(count));
+		BigDecimal totalRating = averageRating.multiply(BigDecimal.valueOf(count));
 		totalRating = totalRating.add(new BigDecimal(review.getReviewRating()));
 		
 		count = count + 1;

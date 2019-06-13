@@ -9,6 +9,7 @@ public class UserReset
   final static String CHAR_LIST = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-";
 
   final static int RANDOM_STRING_LENGTH = 10;
+  private static Random randomGenerator = new Random();
 
   public static String generateRandomString()
   {
@@ -35,13 +36,10 @@ public class UserReset
   private static int getRandomNumber()
   {
     int randomInt = 0;
-    Random randomGenerator = new Random();
     randomInt = randomGenerator.nextInt(CHAR_LIST.length());
     if (randomInt - 1 == -1) {
       return randomInt;
     }
     return randomInt - 1;
   }
-
-  
 }
