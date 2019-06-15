@@ -446,7 +446,6 @@ public class ProductManagementAPIIntegrationTest extends ServicesTestSupport {
         }
     }
 
-
     @Test(timeout=3000)
     public void addProductWithoutCategory() throws ServiceException {
 //        PersistableProduct product = new PersistableProduct();
@@ -467,17 +466,16 @@ public class ProductManagementAPIIntegrationTest extends ServicesTestSupport {
 //        final HttpEntity<PersistableProduct> entity = new HttpEntity<>(product, getHeader());
 //        final ResponseEntity<PersistableProduct> response = testRestTemplate.postForEntity("/api/v1/private/products?store=" + Constants.DEFAULT_STORE, entity, PersistableProduct.class);
 //        assertThat(response.getStatusCode(), is(CREATED));
-
-//        final PersistableProduct product = new PersistableProduct();
-//        product.setCategories(null);
-//        product.setManufacturer(createManufacturer());
-//        product.setPrice(BigDecimal.TEN);
-//        product.setSku("123");
-//        final HttpEntity<PersistableProduct> entity = new HttpEntity<>(product, getHeader());
 //
-//        final ResponseEntity<PersistableProduct> response = testRestTemplate.postForEntity("/api/v1/private/products?store=" + Constants.DEFAULT_STORE, entity, PersistableProduct.class);
-//        assertThat(response.getStatusCode(), is(CREATED));
+//        final PersistableProduct persistableProduct = new PersistableProduct();
+//        persistableProduct.setCategories(null);
+//        persistableProduct.setManufacturer(createManufacturer());
+//        persistableProduct.setPrice(BigDecimal.TEN);
+//        persistableProduct.setSku("123");
+//        final HttpEntity<PersistableProduct> productHttpEntity = new HttpEntity<>(persistableProduct, getHeader());
+//
+//        final ResponseEntity<PersistableProduct> responseEntity = testRestTemplate.postForEntity("/api/v1/private/products?store=" + Constants.DEFAULT_STORE, productHttpEntity, PersistableProduct.class);
+//        assertThat(responseEntity.getStatusCode(), is(CREATED));
 
     }
-
 }

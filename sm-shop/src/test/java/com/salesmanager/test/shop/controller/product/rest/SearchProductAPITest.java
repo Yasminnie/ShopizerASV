@@ -2,6 +2,11 @@ package com.salesmanager.test.shop.controller.product.rest;
 
 import java.nio.charset.Charset;
 
+import com.salesmanager.core.business.services.search.SearchService;
+import com.salesmanager.core.model.merchant.MerchantStore;
+import com.salesmanager.shop.constants.Constants;
+import com.shopizer.search.services.SearchRequest;
+import com.shopizer.search.services.SearchResponse;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
@@ -15,7 +20,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.salesmanager.shop.model.catalog.SearchProductList;
 import com.salesmanager.shop.model.catalog.SearchProductRequest;
-import com.salesmanager.shop.model.catalog.manufacturer.PersistableManufacturer;
 
 public class SearchProductAPITest {
 	
@@ -44,10 +48,8 @@ public class SearchProductAPITest {
 		
 		ObjectWriter writer = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		String json = writer.writeValueAsString(searchRequest);
-		
-		System.out.println(json);
-		
-		HttpEntity<String> entity = new HttpEntity<String>(json, getHeader());
+
+		HttpEntity<String> entity = new HttpEntity<>(json, getHeader());
 		
 		restTemplate = new RestTemplate();
 
@@ -58,4 +60,9 @@ public class SearchProductAPITest {
 		
 	}
 
+	private SearchService searchService;
+
+	@Test
+	public void searchProduct() {
+	}
 }
