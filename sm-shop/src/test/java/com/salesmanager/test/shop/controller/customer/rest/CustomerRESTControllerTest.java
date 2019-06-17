@@ -27,8 +27,6 @@ public class CustomerRESTControllerTest {
 	
 	private Long testCustmerID;
 	
-
-	
 	public HttpHeaders getHeader(){
 		HttpHeaders headers = new HttpHeaders();
 		//headers.setContentType(MediaType.APPLICATION_JSON);
@@ -175,5 +173,4 @@ public class CustomerRESTControllerTest {
 		restTemplate.exchange("http://localhost:8080/sm-shop/services/private/DEFAULT/customer/"+testCustmerID, HttpMethod.DELETE, httpEntity, Customer.class);
 		System.out.println("Customer "+testCustmerID+" Deleted.");
 	}
-	
 }

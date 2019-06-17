@@ -63,7 +63,7 @@ public class StoreContactRESTController {
 	@ResponseBody
 	public AjaxResponse store(@PathVariable final String store, HttpServletRequest request, HttpServletResponse response) {
 		
-		AjaxResponse ajaxResponse = new AjaxResponse();
+//		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			
 			/** default routine **/
@@ -86,7 +86,7 @@ public class StoreContactRESTController {
 			}
 			
 			Language language = merchantStore.getDefaultLanguage();
-			
+
 			Map<String,Language> langs = languageService.getLanguagesMap();
 
 			

@@ -1,9 +1,14 @@
 package com.salesmanager.core.business.utils;
 
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
 
+import com.amazonaws.util.Base64;
 import com.salesmanager.core.constants.MeasureUnit;
 import com.salesmanager.core.model.merchant.MerchantStore;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+//import org.springframework.security.crypto.codec.Base64;
 
 public class DataUtils {
 	
@@ -62,7 +67,7 @@ public class DataUtils {
 	 * configured in store is IN and it needs CM or vise versa then the
 	 * appropriate calculation is done
 	 * 
-	 * @param weight
+	 * @param measure
 	 * @param store
 	 * @param base
 	 * @return
@@ -93,5 +98,17 @@ public class DataUtils {
 				return w.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 			}
 		}
+	}
+
+	public static HttpHeaders getHeader(){
+		HttpHeaders headers = new HttpHeaders();
+		MediaType mediaType = new MediaType("application", "json", Charset.forName("UTF-8"));
+		//MediaType.APPLICATION_JSON //for application/json
+		headers.setContentType(mediaType);
+		//Basic Authentication
+		String authorisation = "admin" + ":" + "password";
+		byte[] encodedAuthorisation = Base64.encode(authorisation.getBytes());
+		headers.add("Authorization", "Basic " + new String(encodedAuthorisation));
+		return headers;
 	}
 }
